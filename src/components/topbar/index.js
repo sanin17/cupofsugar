@@ -9,54 +9,49 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import withRoot from '../../withRoot';
 const styles = {
-    root: {
-      flexGrow: 1,
-    },
-    grow: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20,
-    },
-  };
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
 class TopBar extends React.Component {
-    state = {
-        open: false,
-      };
-    
-      handleClose = () => {
-        this.setState({
-          open: false,
-        });
-      };
-    
-      handleClick = () => {
-        this.setState({
-          open: true,
-        });
-      };
-    render() { 
-        const { classes } = this.props;
+  state = {
+    open: false,
+  };
 
-        return (
-            <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" color="inherit" className={classes.grow}>
-                    Cup of Sugar
+  showSignupModal = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { open } = this.state;
+    return (
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              Cup of Sugar
                 </Typography>
-                <Button color="inherit">Sign Up</Button>
-                <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-            </div>
-        );
-    }
+            <Button color="inherit" onClick={this.showSignupModal}>Sign Up</Button>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 TopBar.propTypes = {
