@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import withRoot from '../../withRoot';
+import { openSignup } from '../../actions';
+import { connect } from 'react-redux';
 const styles = {
   root: {
     flexGrow: 1,
@@ -26,10 +28,11 @@ class TopBar extends React.Component {
     open: false,
   };
 
+  constructor(props) {
+    super(props);
+  }
   showSignupModal = () => {
-    this.setState({
-      open: true,
-    });
+    this.props.dispatch(openSignup);
   };
 
   render() {
@@ -44,7 +47,7 @@ class TopBar extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               Cup of Sugar
-                </Typography>
+            </Typography>
             <Button color="inherit" onClick={this.showSignupModal}>Sign Up</Button>
             <Button color="inherit">Login</Button>
           </Toolbar>
@@ -54,8 +57,14 @@ class TopBar extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  
+});
+export const topBar = connect(mapStateToProps)(TopBar);
+
 TopBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 
 export default withRoot(withStyles(styles)(TopBar));

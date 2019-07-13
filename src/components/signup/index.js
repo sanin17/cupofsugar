@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import withRoot from '../../withRoot';
+import { connect } from 'react-redux';
 const styles = {
     root: {
         flexGrow: 1,
@@ -46,6 +47,11 @@ class Signup extends React.Component {
         );
     }
 }
+const mapStateToProps = (state) => ({
+    open: state.signupDialog.isOpen
+  })
+
+export const SignUpDialog = connect(mapStateToProps)(Signup);
 
 TopBar.propTypes = {
     classes: PropTypes.object.isRequired,
